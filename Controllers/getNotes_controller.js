@@ -1,4 +1,4 @@
-const Note = require('../Models/notes')
+const Note = require('../Models/Note')
 
 module.exports = async function (req, res) {
 

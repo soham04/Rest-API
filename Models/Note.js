@@ -5,8 +5,12 @@ var Schema = mongoose.Schema;
 
 /**
  * Schema for the saving the Notes to the Database
- * database name = ''
- * the table name = ''
+ * database name = 'ToDo'
+ * the table name = 'Todos'
+ * columns 
+ * title @string - Title of the note
+ * description @string - Complete Note
+ * updationTime @Datetime - The last time is was modified
  */
 const notesSchema = new Schema({
     title: {
