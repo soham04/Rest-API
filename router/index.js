@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 
-const home_controller = require('../Controllers/home_controller');
+const home_controller = require('../controllers/home_controller');
 
 /**
  * This files contains the index ofall the routes in the app
@@ -17,11 +17,11 @@ const home_controller = require('../Controllers/home_controller');
  */
 
 router.get('/', home_controller.home);
-router.post('/addNote', require('../Controllers/addNote_controller'));
-router.get('/getNotes', require('../Controllers/getNotes_controller'));
-router.get('/getNote', require('../Controllers/getNote_controller'))
-router.patch('/updateNote/:id', require('../Controllers/updateNote_controller'));
-router.delete('/deleteNote', require('../Controllers/deleteNote_controller'));
+router.post('/addNote', require('../controllers/addNote_controller'));
+router.get('/getNotes', require('../controllers/getNotes_controller'));
+router.get('/getNote', require('../controllers/getNote_controller'))
+router.patch('/updateNote/:id', require('../controllers/updateNote_controller'));
+router.delete('/deleteNote', require('../controllers/deleteNote_controller'));
 
 console.log('Router loaded')
 

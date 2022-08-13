@@ -1,4 +1,4 @@
-const Note = require('../Models/Note')
+const Note = require('../models/Note')
 
 module.exports = function (req, res) {
 
