@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
+
+/**
+ * Schema for the saving the Notes to the Database
+ * database name = ''
+ * the table name = ''
+ */
 const notesSchema = new Schema({
     title: {
         type: String,

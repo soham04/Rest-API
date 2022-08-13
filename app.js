@@ -32,6 +32,7 @@ async function main() {
 // setting up routes
 app.use('/',require("./router/index"))
 
+// setting up to listen to incomming request on the given PORT
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
