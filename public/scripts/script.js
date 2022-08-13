@@ -4,7 +4,7 @@
 * Send a POST request to the backend API to save the Note with 
 * the note in Body of requst as JSON.
 * POST /addNote
-*/ 
+*/
 
 $("#newNoteSubmit").click(function () {
     if ($("#newNoteTitle").val() == '' || $("#newNoteDescription").val() == '') {
@@ -43,7 +43,7 @@ $("#newNoteSubmit").click(function () {
 * sends a GET request to the backend API
 * GET /getNotes returns JSON Array containing all the saved notes
 *
-*/ 
+*/
 function onload() {
     axios.get('/getNotes')
         .then(function (response) {
@@ -78,10 +78,10 @@ function onload() {
 /**
  * Expands the description of the note to view the full description
  */
-function readMore() {
+function readMore(id) {
     var dots = document.getElementById("dots");
     var moreText = document.getElementById("more");
-    var btnText = document.getElementById("myBtn");
+    var btnText = document.getElementById(id + "-readMore");
 
     if (dots.style.display === "none") {
         dots.style.display = "inline";
