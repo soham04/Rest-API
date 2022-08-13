@@ -17,10 +17,11 @@ const home_controller = require('../Controllers/home_controller');
  */
 
 router.get('/', home_controller.home);
-router.use('/addNote', require('../Controllers/addNote_controller'));
-router.use('/getNotes', require('../Controllers/getNotes_controller'));
-router.use('/getNote', require('../Controllers/getNote_controller'))
-router.use('/updateNote/:id', require('../Controllers/updateNote_controller'));
+router.post('/addNote', require('../Controllers/addNote_controller'));
+router.get('/getNotes', require('../Controllers/getNotes_controller'));
+router.get('/getNote', require('../Controllers/getNote_controller'))
+router.patch('/updateNote/:id', require('../Controllers/updateNote_controller'));
+router.delete('/deleteNote', require('../Controllers/deleteNote_controller'));
 
 console.log('Router loaded')
 
