@@ -3,7 +3,7 @@
 * Function that saves the Note on clicking the 'Add Note' button
 * Send a POST request to the backend API to save the Note with 
 * the note in Body of requst as JSON.
-* POST /addNote
+* @POST /addNote
 */
 
 $("#newNoteSubmit").click(function () {
@@ -41,7 +41,7 @@ $("#newNoteSubmit").click(function () {
 * # Step 3: During each iteration we are also rendering the paragraph template seperately.
 * 
 * sends a GET request to the backend API
-* GET /getNotes returns JSON Array containing all the saved notes
+* @GET /getNotes returns JSON Array containing all the saved notes
 *
 */
 function onload() {
@@ -120,10 +120,13 @@ function editNote(id) {
             var $titleInput = $("<input>", { id: id + "-title", val: note.title });
             var $descriptionInput = $("<textarea>", { id: id + "-description", val: note.description, cols: '40', rows: '5' });
             var $updateButton = $("<button>", { id: id + "-update-button", onclick: "updateNote('" + id + "')", html: "UPDATE" })
+            var $cancelButton = $("<button>", { id: id + "-cancel-button", onclick: "cancelUpdate('" + id + "')", html: "CANCEL" })
 
             $titleInput.insertBefore("#" + id + "-updationTime")
             $descriptionInput.insertBefore("#" + id + "-updationTime")
             $updateButton.insertBefore("#" + id + "-updationTime")
+            $cancelButton.insertBefore("#" + id + "-updationTime")
+
         })
         .catch(function (error) {
             // handle error
@@ -134,7 +137,7 @@ function editNote(id) {
 /**
  * Updates the notes edited by the user in the Database by calling
  * the PATCH Method of the Backend API
- * PATCH /updateNote/$id
+ * @PATCH /updateNote/$id
  * where id = ID of the note to be updated
  */
 function updateNote(id) {
@@ -152,5 +155,51 @@ function updateNote(id) {
         }).catch((error) => {
             console.error(error)
         })
+}
+
+function cancelUpdate(id) {
+    $('#' + id).remove()
+
+    axios.get('/getNote', {
+        params: {
+            id: id,
+        }
+    })
+        .then(function (response) {
+            // handle success
+            console.log(response.data);
+
+            let note = response.data;
+            let cardHTML = new EJS({ url: '/templates/note-preview' }).render({
+                id: note._id,
+                title: note.title,
+                updationTime: note.updationTime
+            });
+
+            $('#note_list_Container').prepend($(cardHTML))
+            console.log(note._id);
+            let pHTML = new EJS({ url: '/templates/description' }).render({
+                description: note.description,
+                id: note._id,
+            })
+
+            $(pHTML).insertBefore($('#' + note._id + "-updationTime"))
+
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+
+
+
+
+    // $("#" + id + "-title").remove()
+    // $("#" + id + "-description").remove()
+    // $("#" + id + "-update-button").remove()
+    // $("#" + id + "-cancel-button").remove()
+    // $("#" + id + "-updationTime").remove()
+
+
 }
 
