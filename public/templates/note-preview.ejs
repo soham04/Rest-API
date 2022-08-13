@@ -1,9 +1,14 @@
 <div id="<%= id %>" class="note-preview">
-    <h3 id="<%= id %>-title">
-        <%= title %>
-    </h3>
-    <p id="<%= id %>-updationTime">
-        <%= updationTime %>
-    </p>
+    <div  id="<%= id %>-note-preview-header" class="note-preview-header">
+        <h3 id="<%= id %>-title" style="font-size: 30px;margin: 10px 0;color: blue;text-transform: capitalize;">
+            <%= title %>
+        </h3>
+        <p id="<%= id %>-updationTime">
+            <%= updationTime %>
+        </p>
+    </div>
+
     <button onclick="editNote('<%= id %>')" id="<%= id %>-edit-button">Edit Note</button>
+    <button onclick="deleteNote('<%= id %>')" id="<%= id %>-delete-button">Delete Note</button>
+
 </div>

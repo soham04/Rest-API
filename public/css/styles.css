@@ -1,11 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
 #newNodeBox {
     border-style: dotted;
 }
-
+html{
+    font-size: 20px;
+}
+*{
+    /* margin: 0; */
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
 .note-preview{
-    border-style: dotted;
-    width: min-content;
+    width: 100%;
+    background: rgb(229, 229, 229);
+    padding: 20px;
+    /* margin: 20px; */
     height: min-content;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.note-preview-header{
+    display: flex;
+    justify-content: space-between;
 }
 
 #more {display: none;}
+
+.container{
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+}
+.addnote{
+    flex-basis: 40%;
+}
+.list{
+    flex-basis: 60%;padding: 20px;
+}
+input,textarea{
+    border: 0;
+    outline: 0;
+    padding: 8px 10px;
+    font-size: 16px;
+    color: rgb(36, 36, 36);
+    border: 1px solid #aaa;
+    margin: 10px;
+    border-radius: 5px;
+    width: 300px;
+}
+button,input[type='button']{
+    border: 0;
+    outline: 0;
+    background-color: blue;
+    color: #fff;
+    padding: 8px 15px;
+}

@@ -62,7 +62,7 @@ function onload() {
                     id: note.id,
                 })
 
-                $(pHTML).insertBefore($('#' + note.id + "-updationTime"))
+                $(pHTML).insertAfter($('#' + note.id + "-note-preview-header"))
             });
         })
         .catch(function (error) {
@@ -157,6 +157,9 @@ function updateNote(id) {
         })
 }
 
+/**
+ * disables the edit note option
+ */
 function cancelUpdate(id) {
     $('#' + id).remove()
 
@@ -190,16 +193,22 @@ function cancelUpdate(id) {
             // handle error
             console.log(error);
         })
-
-
-
-
-    // $("#" + id + "-title").remove()
-    // $("#" + id + "-description").remove()
-    // $("#" + id + "-update-button").remove()
-    // $("#" + id + "-cancel-button").remove()
-    // $("#" + id + "-updationTime").remove()
-
-
 }
+
+/**
+ * Delete the note with given ID
+ * It is called by a specific note
+ */
+function deleteNote(id) {
+    console.log("hi");
+    axios.delete('/deleteNote', {
+        id: id
+    }).then(function (response) {
+        console.log(response);
+    }).catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+}
+
 

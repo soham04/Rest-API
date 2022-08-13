@@ -13,11 +13,13 @@
 </head>
 
 <body onload="onload()">
-    <div>
-        <%- include('../partials/addNote.ejs'); %>
-    </div>
-    <div>
-        <%- include('../partials/notes-list.ejs'); %>
+    <div class="container">
+        <div class="addnote">
+            <%- include('../partials/addNote.ejs'); %>
+        </div>
+        <div class="list">
+            <%- include('../partials/notes-list.ejs'); %>
+        </div>
     </div>
     <div id="openNotePanel">
 
