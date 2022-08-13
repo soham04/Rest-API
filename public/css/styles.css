@@ -1,0 +1,11 @@
+#newNodeBox {
+    border-style: dotted;
+}
+
+.note-preview{
+    border-style: dotted;
+    width: min-content;
+    height: min-content;
+}
+
+#more {display: none;}
