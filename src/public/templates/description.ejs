@@ -1,7 +1,7 @@
 <% if(description.length> 20) {%>
     <div style="display:flex;justify-content: space-between;width: 100%;align-items: flex-start;">
         <p id="<%= id %>-description" sty>
-            <%= description.slice(0,20) %><span id="dots">...</span><span id="more">
+            <%= description.slice(0,20) %><span id="<%= id %>-dots">...</span><span id="<%= id %>-more">
                     <%= description.slice(20) %>
                 </span>
         </p>

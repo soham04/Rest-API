@@ -85,8 +85,8 @@ function fillNotes() {
  * Expands the description of the note to view the full description
  */
 function readMore(id) {
-    var dots = document.getElementById("dots");
-    var moreText = document.getElementById("more");
+    var dots = document.getElementById(id + "-dots");
+    var moreText = document.getElementById(id + "-more");
     var btnText = document.getElementById(id + "-readMore");
 
     if (dots.style.display === "none") {
