@@ -97,9 +97,12 @@ function updateNote(id) {
     axios.patch('/updateNote/' + id,
         {
             "title": $("#" + id + "-title").val(),
-            "description": $("#" + id + "-description").val()
+            "description": $("#" + id + "-description").val(),
+            "updationTime": Date.now()
         }).then((response) => {
             console.log(response);
+            cancelUpdate(id)
+
         }).catch((error) => {
             console.error(error)
         })

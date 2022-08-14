@@ -16,14 +16,17 @@ const NoteSchema = new Schema({
     title: {
         type: String,
         required: true,
+        required: true
     },
     description: {
         type: String,
         required: true,
+        required: true
     },
     updationTime: {
         type: Date,
         default: Date.now(),
+        required: true
     }
 },
     {

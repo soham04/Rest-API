@@ -1,18 +1,16 @@
 <% if(description.length> 20) {%>
     <div style="display:flex;justify-content: space-between;width: 100%;align-items: flex-start;">
-        <p id="<%= id %>-description" sty>
-            <%= description.slice(0,20) %><span id="<%= id %>-dots">...</span><span id="<%= id %>-more" class="more">
-                    <%= description.slice(20) %>
-                </span>
-        </p>
-    
+        <pre id="<%= id %>-description" sty>
+<%= description.slice(0,20) %><span id="<%= id %>-dots">...</span><span id="<%= id %>-more" class="more"><%= description.slice(20) %></span>
+        </pre>
+
         <button onclick="readMore('<%= id %>')" id="<%= id %>-readMore">Read more</button>
     </div>
 
     <% } else { %>
 
-        <p id="<%= id %>-description">
-            <%= description %>
-        </p>
+        <pre id="<%= id %>-description">
+<%= description %>
+        </pre>
 
         <% } %>
