@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
+var mongoose_delete = require('mongoose-delete');
 
 var Schema = mongoose.Schema;
-
 
 /**
  * Schema for the saving the Notes to the Database
@@ -12,7 +12,7 @@ var Schema = mongoose.Schema;
  * description @string - Complete Note
  * updationTime @Datetime - The last time is was modified
  */
-const notesSchema = new Schema({
+const NoteSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -31,4 +31,6 @@ const notesSchema = new Schema({
     }
 );
 
-module.exports = mongoose.model('Note', notesSchema);
+NoteSchema.plugin(mongoose_delete);
+
+module.exports = mongoose.model('Note', NoteSchema);

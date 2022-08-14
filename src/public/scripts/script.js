@@ -21,13 +21,20 @@ $("#newNoteSubmit").click(function () {
         axios.post('/addNote', note)
             .then(function (response) {
                 console.log(response);
+                $('#note_list_Container').empty()
+                fillNotes()
             })
             .catch(function (error) {
                 console.log(error);
             });
+
+        $('#newNoteTitle').val("");
+        $('#newNoteDescription').val("");
+
+
     }
-    $('#newNoteTitle').val("");
-    $('#newNoteDescription').val("");
+
+
 })
 
 
@@ -44,7 +51,7 @@ $("#newNoteSubmit").click(function () {
 * @GET /getNotes returns JSON Array containing all the saved notes
 *
 */
-function onload() {
+function fillNotes() {
     axios.get('/getNotes')
         .then(function (response) {
 
@@ -73,7 +80,6 @@ function onload() {
             // always executed
         });
 }
-
 
 /**
  * Expands the description of the note to view the full description
@@ -200,15 +206,17 @@ function cancelUpdate(id) {
  * It is called by a specific note
  */
 function deleteNote(id) {
+
     console.log("hi");
-    axios.delete('/deleteNote', {
-        id: id
-    }).then(function (response) {
+    axios.delete('/deleteNote', { params: { id: id } }).then(function (response) {
         console.log(response);
+        $('#note_list_Container').empty()
+        fillNotes()
     }).catch(function (error) {
         // handle error
         console.log(error);
     })
+
 }
 
 

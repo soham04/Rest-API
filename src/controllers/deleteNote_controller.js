@@ -2,13 +2,13 @@ const Note = require('../models/Note')
 
 module.exports = function (req, res) {
 
-    console.log(req.body);
-    console.log("DELETE /updateNote/")
+    console.log(req.query.query);
+    console.log("DELETE /updateNote")
 
-    let id = req.body.id
+    let id = req.query.id
     console.log(id);
 
-    Note.deleteOne({ id: id }).then(function () {
+    Note.findByIdAndDelete(id).then(function () {
         console.log("Data deleted"); // Success
         res.send("Note Deleted")
 
