@@ -1,4 +1,3 @@
-
 /**
 * Function that saves the Note on clicking the 'Add Note' button
 * Send a POST request to the backend API to save the Note with 
@@ -56,10 +55,11 @@ function fillNotes() {
         .then(function (response) {
 
             response.data.forEach(note => {
+
                 let cardHTML = new EJS({ url: '/templates/note-preview' }).render({
                     id: note.id,
                     title: note.title,
-                    updationTime: note.updationTime
+                    updationTime: getDateFormatted(note.updationTime)
                 });
 
                 $('#note_list_Container').prepend($(cardHTML))
@@ -82,69 +82,11 @@ function fillNotes() {
 }
 
 /**
- * Expands the description of the note to view the full description
- */
-function readMore(id) {
-    var dots = document.getElementById(id + "-dots");
-    var moreText = document.getElementById(id + "-more");
-    var btnText = document.getElementById(id + "-readMore");
-
-    if (dots.style.display === "none") {
-        dots.style.display = "inline";
-        btnText.innerHTML = "Read more";
-        moreText.style.display = "none";
-    } else {
-        dots.style.display = "none";
-        btnText.innerHTML = "Read less";
-        moreText.style.display = "inline";
-    }
-}
-
-/** 
- * Enables the user to edit an already existing note.
-*/
-function editNote(id) {
-
-    axios.get('/getNote', {
-        params: {
-            id: id,
-        }
-    })
-        .then(function (response) {
-            // handle success
-            console.log(response.data);
-
-            let note = response.data;
-            console.log($('#newNoteTitle'));
-
-            $("#" + id + "-title").remove()
-            $("#" + id + "-description").remove()
-            $("#" + id + "-readMore").remove()
-            $("#" + id + "-edit-button").remove()
-
-
-            var $titleInput = $("<input>", { id: id + "-title", val: note.title });
-            var $descriptionInput = $("<textarea>", { id: id + "-description", val: note.description, cols: '40', rows: '5' });
-            var $updateButton = $("<button>", { id: id + "-update-button", onclick: "updateNote('" + id + "')", html: "UPDATE" })
-            var $cancelButton = $("<button>", { id: id + "-cancel-button", onclick: "cancelUpdate('" + id + "')", html: "CANCEL" })
-
-            $titleInput.insertBefore("#" + id + "-updationTime")
-            $descriptionInput.insertBefore("#" + id + "-updationTime")
-            $updateButton.insertBefore("#" + id + "-updationTime")
-            $cancelButton.insertBefore("#" + id + "-updationTime")
-
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-}
-
-/**
  * Updates the notes edited by the user in the Database by calling
  * the PATCH Method of the Backend API
  * @PATCH /updateNote/$id
  * where id = ID of the note to be updated
+ * @param {String} id - the id of the note to update
  */
 function updateNote(id) {
     // alert("updating" + id)
@@ -164,46 +106,9 @@ function updateNote(id) {
 }
 
 /**
- * disables the edit note option
- */
-function cancelUpdate(id) {
-    $('#' + id).remove()
-
-    axios.get('/getNote', {
-        params: {
-            id: id,
-        }
-    })
-        .then(function (response) {
-            // handle success
-            console.log(response.data);
-
-            let note = response.data;
-            let cardHTML = new EJS({ url: '/templates/note-preview' }).render({
-                id: note._id,
-                title: note.title,
-                updationTime: note.updationTime
-            });
-
-            $('#note_list_Container').prepend($(cardHTML))
-            console.log(note._id);
-            let pHTML = new EJS({ url: '/templates/description' }).render({
-                description: note.description,
-                id: note._id,
-            })
-
-            $(pHTML).insertBefore($('#' + note._id + "-updationTime"))
-
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-}
-
-/**
  * Delete the note with given ID
  * It is called by a specific note
+ * @param {String} id - the id of the note to delete
  */
 function deleteNote(id) {
 
@@ -218,5 +123,3 @@ function deleteNote(id) {
     })
 
 }
-
-

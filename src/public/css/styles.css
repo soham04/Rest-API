@@ -27,7 +27,7 @@ html{
     justify-content: space-between;
 }
 
-#more {display: none;}
+.more {display: none;}
 
 .container{
     display: flex;
