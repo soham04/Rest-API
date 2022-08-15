@@ -1,6 +1,6 @@
 const Note = require('../models/Note')
 
-module.exports = function (req, res) {
+module.exports = function (req, res, next) {
     console.log(req.body);
     console.log("PATCH /updateNote/" + req.params.id)
 
@@ -10,9 +10,9 @@ module.exports = function (req, res) {
 
     Note.findByIdAndUpdate(id, update, { upsert: false }, function (err, doc) {
         if (err) {
-            console.log(err);
+            next(err)
         }
-    })
+        res.send("note updated")
 
-    res.send("note updated")
+    })
 }

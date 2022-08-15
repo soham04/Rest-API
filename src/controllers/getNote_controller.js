@@ -6,5 +6,7 @@ module.exports = async function (req, res) {
 
         console.log(note);
         res.send(note)
-    })
+    }).catch(function (error) {
+        next(error)
+    });
 }

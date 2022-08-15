@@ -1,6 +1,6 @@
 const Note = require('../models/Note')
 
-module.exports = function (req, res) {
+module.exports = function (req, res, next) {
     console.log(req.body);
     console.log("POST /addNote")
 
@@ -9,12 +9,12 @@ module.exports = function (req, res) {
     // save entry to database
     sample_note.save(function (err, book) {
         if (err) {
-            res.send("500 Internal Server Error")
-            res.status(500)
+            next(err)
         } else {
+            res.send("Note saved successfully")
             console.log("Entry interted in DB succesfully");
         }
     });
 
-    res.send("Note saved successfully")
+    
 }

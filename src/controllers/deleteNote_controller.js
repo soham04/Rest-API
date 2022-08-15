@@ -1,6 +1,6 @@
 const Note = require('../models/Note')
 
-module.exports = function (req, res) {
+module.exports = function (req, res, next) {
 
     console.log(req.query.query);
     console.log("DELETE /updateNote")
@@ -13,7 +13,7 @@ module.exports = function (req, res) {
         res.send("Note Deleted")
 
     }).catch(function (error) {
-        console.log(error); // Failure
+        next(error)
     });
 
 }

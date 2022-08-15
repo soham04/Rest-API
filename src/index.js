@@ -36,6 +36,9 @@ app.use('/', require("./router/pageRoutes"))
 // API Routes for serving API endpoints
 app.use('/', require("./router/apiRoutes"))
 
+// setting up error handling middlewares
+app.use(require('./middlewares/errorLogger'))
+app.use(require('./middlewares/errorHandler'))
 
 // setting up to listen to incomming request on the given PORT
 app.listen(port, () => {

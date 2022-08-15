@@ -1,15 +1,6 @@
 const Note = require('../models/Note')
 
 module.exports = async function (req, res) {
-
-    function reducer(currentValue, index, arr) {
-        let id = currentValue._id.valueOf()
-        console.log(id);
-        currentValue.dd = null
-        console.log(currentValue);
-
-    }
-
     let new_list = []
 
     await Note.find({}).then(async (tmp) => {
@@ -24,8 +15,11 @@ module.exports = async function (req, res) {
             })
         });
         console.log(new_list);
+        res.send(new_list)
 
-    })
+    }).catch(function (error) {
+        next(error)
+    });
 
-    res.send(new_list)
+
 }
